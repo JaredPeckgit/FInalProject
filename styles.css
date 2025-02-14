@@ -1,0 +1,30 @@
+
+body {
+    margin: 0;
+    font-family: Arial, sans-serif;
+    background: #1a1a1a;
+    color: white;
+}
+
+.section {
+    height: 100vh;
+    padding: 20px;
+    opacity: 0;
+    transform: translateY(50px);
+    transition: all 1s ease;
+}
+
+.section.visible {
+    opacity: 1;
+    transform: translateY(0);
+}
+
+h1 {
+    text-align: center;
+    color: #4CAF50;
+}
+
+.content {
+    max-width: 800px;
+    margin: 0 auto;
+}
