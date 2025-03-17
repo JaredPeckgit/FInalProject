@@ -35,16 +35,9 @@ h1 {
 h2 {
     color: #4dabf7;
     margin-bottom: 10px;
-    position: relative; 
-    cursor: pointer; 
+    position: relative;
+    cursor: pointer;
 }
-
-p {
-    line-height: 1.6;
-    font-size: 16px;
-    color: #b0b0b0;
-}
-
 
 h2::after {
     content: attr(data-tooltip);
@@ -67,6 +60,11 @@ h2:hover::after {
     opacity: 1;
 }
 
+p {
+    line-height: 1.6;
+    font-size: 16px;
+    color: #b0b0b0;
+}
 
 .progress-bar {
     position: fixed;
@@ -74,7 +72,86 @@ h2:hover::after {
     left: 0;
     width: 0;
     height: 4px;
-    background-color: #4dabf7; 
+    background-color: #4dabf7;
     z-index: 100;
     transition: width 0.3s ease;
+}
+
+.fact-box {
+    text-align: center;
+    margin: 20px 0;
+    padding: 15px;
+    background-color: #2a2a2a;
+    border-radius: 8px;
+    border: 1px solid #4dabf7;
+}
+
+#fact-text {
+    margin: 0 0 10px 0;
+    color: #e0e0e0;
+    font-size: 16px;
+}
+
+#next-fact {
+    background-color: #1a73e8;
+    color: #fff;
+    border: none;
+    padding: 10px 20px;
+    border-radius: 4px;
+    cursor: pointer;
+    transition: background-color 0.3s ease;
+}
+
+#next-fact:hover {
+    background-color: #4dabf7;
+}
+
+.quiz-box {
+    text-align: center;
+    margin: 20px 0;
+    padding: 15px;
+    background-color: #2a2a2a;
+    border-radius: 8px;
+    border: 1px solid #4dabf7;
+}
+
+#quiz-btn {
+    background-color: #1a73e8;
+    color: #fff;
+    border: none;
+    padding: 10px 20px;
+    border-radius: 4px;
+    cursor: pointer;
+    transition: background-color 0.3s ease;
+}
+
+#quiz-btn:hover {
+    background-color: #4dabf7;
+}
+
+#quiz-question {
+    margin: 10px 0;
+    font-size: 18px;
+    color: #e0e0e0;
+}
+
+#quiz-options button {
+    background-color: #1a73e8;
+    color: #fff;
+    border: none;
+    padding: 8px 16px;
+    margin: 5px;
+    border-radius: 4px;
+    cursor: pointer;
+    transition: background-color 0.3s ease;
+}
+
+#quiz-options button:hover {
+    background-color: #4dabf7;
+}
+
+#quiz-feedback {
+    margin: 10px 0;
+    font-size: 16px;
+    color: #e0e0e0;
 }
