@@ -11,11 +11,12 @@ This project is an interactive web-based timeline exploring the evolution of vid
 
 
 ### Quiz Functionality
-- **Description**: A "Quiz Me!" button generates a random multiple-choice question about video game history.
-- **How It Works**: 
-  - Questions and answers are stored in the quiz data array.
-  - Clicking "Quiz Me!" displays a question and buttons for options.
-  - Selecting an answer provides instant feedback 
+- **Description**: A "Quiz Me!" button generates a random multiple-choice question.
+- **How It Works**:
+  - Questions from `quizData` are displayed with answer buttons.
+  - `checkAnswer` uses a `switch` statement to provide varied feedback based on the correct answer (e.g., "Correct! Fortnite’s a cash machine!" for "$9 billion").
+  - Results update `#quiz-feedback` dynamically without refresh.
+- **Test**: Click "Quiz Me!" and answer; feedback varies by question. answer provides instant feedback 
 
 ### Progress Bar
 - **Description**: A light blue bar at the top tracks your scroll progress through the timeline.
