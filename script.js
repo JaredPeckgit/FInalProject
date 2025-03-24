@@ -69,9 +69,30 @@ document.addEventListener('DOMContentLoaded', () => {
         });
     }
 
+    // Updated with switch statement for varied feedback
     function checkAnswer(selected, correct) {
         if (selected === correct) {
-            quizFeedback.textContent = "Correct! Great job!";
+            let feedbackMessage;
+            switch (correct) { // Switch based on correct answer for variety
+                case "1958":
+                    feedbackMessage = "Correct! Tennis for Two kicked it all off!";
+                    break;
+                case "Playing cards":
+                    feedbackMessage = "Correct! Nintendo’s card days were legendary!";
+                    break;
+                case "Market saturation":
+                    feedbackMessage = "Correct! ";
+                    break;
+                case "Nintendo":
+                    feedbackMessage = "Correct! ";
+                    break;
+                case "$9 billion":
+                    feedbackMessage = "Correct! ";
+                    break;
+                default:
+                    feedbackMessage = "Correct! Great job!";
+            }
+            quizFeedback.textContent = feedbackMessage;
             quizFeedback.style.color = "#4dabf7";
         } else {
             quizFeedback.textContent = `Wrong! The correct answer was ${correct}.`;
