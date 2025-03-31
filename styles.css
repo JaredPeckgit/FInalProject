@@ -115,7 +115,7 @@ p {
     border: 1px solid #4dabf7;
 }
 
-#quiz-btn {
+#quiz-btn, #reset-quiz {
     background-color: #1a73e8;
     color: #fff;
     border: none;
@@ -123,9 +123,10 @@ p {
     border-radius: 4px;
     cursor: pointer;
     transition: background-color 0.3s ease;
+    margin: 5px;
 }
 
-#quiz-btn:hover {
+#quiz-btn:hover, #reset-quiz:hover {
     background-color: #4dabf7;
 }
 
@@ -163,4 +164,12 @@ p {
     margin: 10px auto;
     border: 2px solid #4dabf7;
     border-radius: 4px;
+}
+
+.era-btn {
+    transition: color 0.3s ease;
+}
+
+.era-btn:hover {
+    color: #fff; 
 }

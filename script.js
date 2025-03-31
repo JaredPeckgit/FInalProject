@@ -4,10 +4,11 @@ document.addEventListener('DOMContentLoaded', () => {
     const factText = document.getElementById('fact-text');
     const nextFactButton = document.getElementById('next-fact');
     const quizButton = document.getElementById('quiz-btn');
+    const resetQuizButton = document.getElementById('reset-quiz'); 
     const quizQuestion = document.getElementById('quiz-question');
     const quizOptions = document.getElementById('quiz-options');
     const quizFeedback = document.getElementById('quiz-feedback');
-
+    const eraButtons = document.querySelectorAll('.era-btn'); 
     const gameFacts = [
         "The first video game, Tennis for Two, was created in 1958 using an oscilloscope.",
         "Nintendo, founded in 1889, originally made playing cards before entering gaming.",
@@ -69,11 +70,10 @@ document.addEventListener('DOMContentLoaded', () => {
         });
     }
 
-    // Updated with switch statement for varied feedback
     function checkAnswer(selected, correct) {
         if (selected === correct) {
             let feedbackMessage;
-            switch (correct) { // Switch based on correct answer for variety
+            switch (correct) {
                 case "1958":
                     feedbackMessage = "Correct! Tennis for Two kicked it all off!";
                     break;
@@ -81,13 +81,13 @@ document.addEventListener('DOMContentLoaded', () => {
                     feedbackMessage = "Correct! Nintendo’s card days were legendary!";
                     break;
                 case "Market saturation":
-                    feedbackMessage = "Correct! ";
+                    feedbackMessage = "Correct! Too many games crashed the market!";
                     break;
                 case "Nintendo":
-                    feedbackMessage = "Correct! ";
+                    feedbackMessage = "Correct! Sony and Nintendo almost teamed up!";
                     break;
                 case "$9 billion":
-                    feedbackMessage = "Correct! ";
+                    feedbackMessage = "Correct! Fortnite’s a cash machine!";
                     break;
                 default:
                     feedbackMessage = "Correct! Great job!";
@@ -99,6 +99,31 @@ document.addEventListener('DOMContentLoaded', () => {
             quizFeedback.style.color = "#e91e63";
         }
     }
+
+   
+    resetQuizButton.addEventListener('click', () => {
+        quizQuestion.textContent = "";
+        quizOptions.innerHTML = "";
+        quizFeedback.textContent = "";
+        alert("Quiz reset! Click 'Quiz Me!' to start again.");
+    });
+
+   
+    eraButtons.forEach(button => {
+        button.addEventListener('click', () => {
+            const era = button.getAttribute('data-era');
+            const popup = window.open("", `EraPopup-${era}`, "width=400,height=300");
+            if (popup) {
+                popup.document.write(`
+                    <h3>${button.textContent}</h3>
+                    <p>${button.nextElementSibling.nextElementSibling.textContent}</p>
+                    <button onclick="window.close()">Close</button>
+                `);
+            } else {
+                alert(`Details for ${era}: ${button.nextElementSibling.nextElementSibling.textContent}`);
+            }
+        });
+    });
 
     quizButton.addEventListener('click', generateQuiz);
 
