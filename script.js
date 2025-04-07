@@ -4,11 +4,16 @@ document.addEventListener('DOMContentLoaded', () => {
     const factText = document.getElementById('fact-text');
     const nextFactButton = document.getElementById('next-fact');
     const quizButton = document.getElementById('quiz-btn');
-    const resetQuizButton = document.getElementById('reset-quiz'); 
+    const resetQuizButton = document.getElementById('reset-quiz');
     const quizQuestion = document.getElementById('quiz-question');
     const quizOptions = document.getElementById('quiz-options');
     const quizFeedback = document.getElementById('quiz-feedback');
-    const eraButtons = document.querySelectorAll('.era-btn'); 
+    const eraButtons = document.querySelectorAll('.era-btn');
+    const submitFeedbackButton = document.getElementById('submit-feedback'); 
+    const feedbackName = document.getElementById('feedback-name'); 
+    const feedbackText = document.getElementById('feedback-text'); 
+    const feedbackResult = document.getElementById('feedback-result');
+
     const gameFacts = [
         "The first video game, Tennis for Two, was created in 1958 using an oscilloscope.",
         "Nintendo, founded in 1889, originally made playing cards before entering gaming.",
@@ -19,16 +24,25 @@ document.addEventListener('DOMContentLoaded', () => {
 
     let factIndex = 0;
 
+   
     nextFactButton.addEventListener('click', () => {
-        for (let i = 0; i < gameFacts.length; i++) {
-            if (i === factIndex) {
-                factText.textContent = gameFacts[i];
-                factIndex = (factIndex + 1) % gameFacts.length;
-                break;
+        try {
+            if (!gameFacts.length) throw new Error("No facts available!");
+            for (let i = 0; i < gameFacts.length; i++) {
+                if (i === factIndex) {
+                    factText.textContent = gameFacts[i];
+                    factIndex = (factIndex + 1) % gameFacts.length;
+                    break;
+                }
             }
+        } catch (error) {
+            alert(`Error: ${error.message}`);
+        } finally {
+            console.log("Fact cycling attempt completed.");
         }
     });
 
+   
     function checkScroll() {
         sections.forEach(section => {
             const sectionTop = section.getBoundingClientRect().top;
@@ -56,41 +70,38 @@ document.addEventListener('DOMContentLoaded', () => {
         { question: "How much did Fortnite earn in its first two years?", answers: ["$1 billion", "$5 billion", "$9 billion", "$12 billion"], correct: "$9 billion" }
     ];
 
+   
     function generateQuiz() {
-        const randomQuiz = quizData[Math.floor(Math.random() * quizData.length)];
-        quizQuestion.textContent = randomQuiz.question;
-        quizOptions.innerHTML = "";
-        quizFeedback.textContent = "";
+        try {
+            if (!quizData.length) throw new Error("No quiz data available!");
+            const randomQuiz = quizData[Math.floor(Math.random() * quizData.length)];
+            quizQuestion.textContent = randomQuiz.question;
+            quizOptions.innerHTML = "";
+            quizFeedback.textContent = "";
 
-        randomQuiz.answers.forEach(answer => {
-            const button = document.createElement('button');
-            button.textContent = answer;
-            button.addEventListener('click', () => checkAnswer(answer, randomQuiz.correct));
-            quizOptions.appendChild(button);
-        });
+            randomQuiz.answers.forEach(answer => {
+                const button = document.createElement('button');
+                button.textContent = answer;
+                button.addEventListener('click', () => checkAnswer(answer, randomQuiz.correct));
+                quizOptions.appendChild(button);
+            });
+        } catch (error) {
+            alert(`Error: ${error.message}`);
+        } finally {
+            console.log("Quiz generation attempt completed.");
+        }
     }
 
     function checkAnswer(selected, correct) {
         if (selected === correct) {
             let feedbackMessage;
             switch (correct) {
-                case "1958":
-                    feedbackMessage = "Correct! Tennis for Two kicked it all off!";
-                    break;
-                case "Playing cards":
-                    feedbackMessage = "Correct! Nintendo’s card days were legendary!";
-                    break;
-                case "Market saturation":
-                    feedbackMessage = "Correct! Too many games crashed the market!";
-                    break;
-                case "Nintendo":
-                    feedbackMessage = "Correct! Sony and Nintendo almost teamed up!";
-                    break;
-                case "$9 billion":
-                    feedbackMessage = "Correct! Fortnite’s a cash machine!";
-                    break;
-                default:
-                    feedbackMessage = "Correct! Great job!";
+                case "1958": feedbackMessage = "Correct! Tennis for Two kicked it all off!"; break;
+                case "Playing cards": feedbackMessage = "Correct! Nintendo’s card days were legendary!"; break;
+                case "Market saturation": feedbackMessage = "Correct! Too many games crashed the market!"; break;
+                case "Nintendo": feedbackMessage = "Correct! Sony and Nintendo almost teamed up!"; break;
+                case "$9 billion": feedbackMessage = "Correct! Fortnite’s a cash machine!"; break;
+                default: feedbackMessage = "Correct! Great job!";
             }
             quizFeedback.textContent = feedbackMessage;
             quizFeedback.style.color = "#4dabf7";
@@ -100,33 +111,66 @@ document.addEventListener('DOMContentLoaded', () => {
         }
     }
 
-   
     resetQuizButton.addEventListener('click', () => {
-        quizQuestion.textContent = "";
-        quizOptions.innerHTML = "";
-        quizFeedback.textContent = "";
-        alert("Quiz reset! Click 'Quiz Me!' to start again.");
+        try {
+            quizQuestion.textContent = "";
+            quizOptions.innerHTML = "";
+            quizFeedback.textContent = "";
+            alert("Quiz reset! Click 'Quiz Me!' to start again.");
+        } catch (error) {
+            alert(`Error resetting quiz: ${error.message}`);
+        } finally {
+            console.log("Quiz reset attempt completed.");
+        }
     });
 
-   
+    
     eraButtons.forEach(button => {
         button.addEventListener('click', () => {
-            const era = button.getAttribute('data-era');
-            const popup = window.open("", `EraPopup-${era}`, "width=400,height=300");
-            if (popup) {
+            try {
+                const era = button.getAttribute('data-era');
+                if (!era) throw new Error("Era data missing!");
+                const popup = window.open("", `EraPopup-${era}`, "width=400,height=300");
+                if (!popup) throw new Error("Popup blocked or failed!");
                 popup.document.write(`
                     <h3>${button.textContent}</h3>
                     <p>${button.nextElementSibling.nextElementSibling.textContent}</p>
                     <button onclick="window.close()">Close</button>
                 `);
-            } else {
+            } catch (error) {
+                alert(`Error: ${error.message}`);
+                
+                const era = button.getAttribute('data-era');
                 alert(`Details for ${era}: ${button.nextElementSibling.nextElementSibling.textContent}`);
+            } finally {
+                console.log("Era popup attempt completed.");
             }
         });
     });
 
-    quizButton.addEventListener('click', generateQuiz);
+   
+    submitFeedbackButton.addEventListener('click', () => {
+        try {
+            const name = feedbackName.value.trim();
+            const text = feedbackText.value.trim();
 
+           
+            if (!name) throw new Error("Name cannot be empty!");
+            if (!text) throw new Error("Feedback cannot be empty!");
+
+            feedbackResult.textContent = `Thanks, ${name}! Your feedback: "${text}" has been noted.`;
+            feedbackResult.style.color = "#4dabf7";
+            feedbackName.value = ""; 
+            feedbackText.value = "";
+        } catch (error) {
+            feedbackResult.textContent = `Error: ${error.message}`;
+            feedbackResult.style.color = "#e91e63";
+        } finally {
+            console.log("Feedback submission attempt completed.");
+        }
+    });
+
+    quizButton.addEventListener('click', generateQuiz);
     checkScroll();
     window.addEventListener('scroll', checkScroll);
 });

@@ -18,6 +18,9 @@ This project is an interactive web-based timeline exploring the evolution of vid
   - Results update `#quiz-feedback` dynamically without refresh.
 - **Test**: Click "Quiz Me!" and answer; feedback varies by question. answer provides instant feedback 
 
+
+Added the reset button to the quiz function 
+
 ### Progress Bar
 - **Description**: A light blue bar at the top tracks your scroll progress through the timeline.
 - **How It Works**: JavaScript calculates scroll percentage and updates the progress bar width.

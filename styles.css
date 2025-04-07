@@ -171,5 +171,43 @@ p {
 }
 
 .era-btn:hover {
-    color: #fff; 
+    color: #fff;
+}
+
+/* New Feedback Box Styles */
+.feedback-box {
+    text-align: center;
+    margin: 20px 0;
+    padding: 15px;
+    background-color: #2a2a2a;
+    border-radius: 8px;
+    border: 1px solid #4dabf7;
+}
+
+.feedback-box input {
+    padding: 8px;
+    margin: 5px;
+    border-radius: 4px;
+    border: 1px solid #4dabf7;
+    width: 200px;
+}
+
+#submit-feedback {
+    background-color: #1a73e8;
+    color: #fff;
+    border: none;
+    padding: 10px 20px;
+    border-radius: 4px;
+    cursor: pointer;
+    transition: background-color 0.3s ease;
+}
+
+#submit-feedback:hover {
+    background-color: #4dabf7;
+}
+
+#feedback-result {
+    margin: 10px 0;
+    font-size: 16px;
+    color: #e0e0e0;
 }
