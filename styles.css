@@ -174,7 +174,10 @@ p {
     color: #fff;
 }
 
-/* New Feedback Box Styles */
+.era-btn.visited {
+    color: #e91e63; /* Pink for visited eras */
+}
+
 .feedback-box {
     text-align: center;
     margin: 20px 0;
@@ -210,4 +213,10 @@ p {
     margin: 10px 0;
     font-size: 16px;
     color: #e0e0e0;
+}
+
+#quiz-score {
+    font-size: 16px;
+    color: #4dabf7;
+    margin: 10px 0;
 }
